@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nginx:
+    build: .
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+    environment:
+      USERS_DELAY_MS: 5000
+      PRODUCTS_DELAY_MS: 1000
+      ORDERS_DELAY_MS: 100
+    volumes:
+      - ./services:/usr/local/openresty/nginx/html/services 
