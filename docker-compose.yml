@@ -1,14 +1,15 @@
 version: '3'
 services:
   nginx:
-    build: .
+    image: openresty/openresty:alpine
     ports:
       - "8081:8081"
       - "8082:8082"
       - "8083:8083"
     environment:
-      USERS_DELAY_MS: 5000
-      PRODUCTS_DELAY_MS: 1000
-      ORDERS_DELAY_MS: 100
+      USERS_DELAY_MS: 500
+      PRODUCTS_DELAY_MS: 5000
+      ORDERS_DELAY_MS: 10000
     volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
       - ./services:/usr/local/openresty/nginx/html/services 
