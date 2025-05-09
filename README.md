@@ -43,6 +43,18 @@ environment:
   ORDERS_DELAY_MS: 10000  # 10 seconds
 ```
 
+### Caching
+
+The orders service has a cached endpoint available:
+- `http://localhost:8083/cached/responses/list.json`
+
+Cached endpoint features:
+- First request will have a 10s delay (as configured in `ORDERS_DELAY_MS`)
+- Subsequent requests will be instant as data is served from cache
+- Cache is stored in server memory
+- Cache size: 10MB
+- Cache TTL: 1 hour
+
 ## Usage
 
 ### Get Users List
@@ -58,6 +70,11 @@ curl 'http://localhost:8082/responses/list.json'
 ### Get Orders List
 ```bash
 curl 'http://localhost:8083/responses/list.json'
+```
+
+### Get Cached Orders List
+```bash
+curl 'http://localhost:8083/cached/responses/list.json'
 ```
 
 ## Adding New Services
